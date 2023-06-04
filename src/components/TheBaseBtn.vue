@@ -5,6 +5,7 @@
       btn__next: name === 'next' || name === 'next-end',
       'btn__start-end': name === 'next-end' || name === 'prev-start',
       btn__mid: name === 'random',
+      disabled: disabled,
     }"
   >
     <svg
@@ -31,7 +32,6 @@
         fill="white"
       />
     </svg>
-
     <slot />
   </button>
 </template>
@@ -43,6 +43,7 @@ export default {
   props: {
     name: { type: String, default: "" },
     text: { type: String, default: "" },
+    disabled: { type: Boolean, default: false },
   },
 
   computed: {
@@ -107,5 +108,11 @@ export default {
     background: #f26a15;
     opacity: 1;
   }
+}
+
+.disabled {
+  pointer-events: none;
+  background: #a3501d;
+  transition: 0.3s;
 }
 </style>

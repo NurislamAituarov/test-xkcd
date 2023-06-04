@@ -7,16 +7,20 @@
 
     <div class="main">
       <div class="container">
-        <h2>Bad Map Projection: Liquid Resize</h2>
-        <div class="comic__nav">
-          <TheBaseBtn name="prev-start" />
-          <TheBaseBtn name="prev" />
-          <TheBaseBtn name="random">Random</TheBaseBtn>
-          <TheBaseBtn name="next" />
-          <TheBaseBtn name="next-end" />
-        </div>
-        <div class="comic__main">main</div>
-        <div class="comic__nav">nav</div>
+        <h2>{{ comic.title }}</h2>
+        <TheComicNav
+          :id="comic.num"
+          @get-random-comic="getRandomComic"
+          @get-comic-next="getComicNext"
+          @get-comic-prev="getComicPrev"
+        />
+        <TheComicContent :src="comic.img" />
+        <TheComicNav
+          :id="comic.num"
+          @get-comic-next="getComicNext"
+          @get-comic-prev="getComicPrev"
+          @get-random-comic="getRandomComic"
+        />
       </div>
     </div>
   </div>
@@ -24,12 +28,49 @@
 
 
 <script>
-import TheBaseBtn from "@/src/components/TheBaseBtn.vue";
+import TheComicContent from "../components/TheComicContent.vue";
+import TheComicNav from "../components/TheComicNav.vue";
+import { getRandomComicId, getComicId } from "../lib/methods";
 
 export default {
   name: "ComicPage",
+  components: { TheComicNav, TheComicContent },
+  data() {
+    return {
+      comic: [],
+    };
+  },
 
-  components: { TheBaseBtn },
+  created() {
+    this.getRandomComic();
+  },
+
+  methods: {
+    getRandomComicId,
+    getComicId,
+
+    getRandomComic() {
+      this.getRandomComicId()
+        .then((data) => (this.comic = data))
+        .catch((e) => console.log(e));
+    },
+
+    getComicNext({ id, end }) {
+      const idGenerate = end ? 2784 : id + 1;
+
+      this.getComicId(idGenerate)
+        .then((data) => (this.comic = data))
+        .catch((e) => console.error(e));
+    },
+
+    getComicPrev({ id, start }) {
+      const idGenerate = start ? 1 : id - 1;
+
+      this.getComicId(idGenerate)
+        .then((data) => (this.comic = data))
+        .catch((e) => console.error(e));
+    },
+  },
 };
 </script>
 
@@ -60,7 +101,8 @@ export default {
 }
 
 .main {
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
   background: #0e2f51;
   position: relative;
   top: -5px;
@@ -76,14 +118,6 @@ export default {
       text-align: center;
       color: #ffffff;
       margin-bottom: 31px;
-    }
-    .comic__nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .comic__main {
-      margin: 45px 0;
     }
   }
 }

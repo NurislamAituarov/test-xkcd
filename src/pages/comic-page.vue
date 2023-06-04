@@ -57,7 +57,6 @@ export default {
 
     getComicNext({ id, end }) {
       const idGenerate = end ? 2784 : id + 1;
-
       this.getComicId(idGenerate)
         .then((data) => (this.comic = data))
         .catch((e) => console.error(e));

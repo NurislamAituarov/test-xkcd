@@ -1,15 +1,19 @@
 {
   "name": "nuxt-app",
   "private": true,
+  "homepage": "https://nurislamaituarov.github.io/test-xkcd/",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "devDependencies": {
     "@types/node": "^18",
+    "gh-pages": "^5.0.0",
     "nuxt": "^3.5.2",
     "sass": "^1.62.1",
     "sass-loader": "^13.3.1"

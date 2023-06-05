@@ -1,9 +1,6 @@
 <template>
   <div class="wrapper">
-    <div class="header__title">
-      <h1 class="anim-title">TEST FROM I-ONE WEB AGENCY</h1>
-      <img src="@/public/fon.png" alt="фоновое изображение" />
-    </div>
+    <TheHeader />
 
     <div class="main">
       <div class="container">
@@ -30,11 +27,12 @@
 <script>
 import TheComicContent from "../components/TheComicContent.vue";
 import TheComicNav from "../components/TheComicNav.vue";
+import TheHeader from "../components/TheHeader.vue";
 import { getRandomComicId, getComicId } from "../lib/methods";
 
 export default {
   name: "ComicPage",
-  components: { TheComicNav, TheComicContent },
+  components: { TheComicNav, TheComicContent, TheHeader },
   data() {
     return {
       comic: [],
@@ -76,48 +74,6 @@ export default {
 .wrapper {
   max-width: 1920px;
   margin: 0 auto;
-}
-
-.header__title {
-  position: relative;
-  perspective: 500px;
-  h1 {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 44px;
-    line-height: 52px;
-    letter-spacing: 0.1em;
-    color: #ffffff;
-  }
-
-  .anim-title {
-    animation-duration: 1s;
-    animation-name: anim-title;
-    animation-direction: alternate;
-  }
-
-  @keyframes anim-title {
-    from {
-      top: 65%;
-      opacity: 0;
-      transform: translate(-50%, -50%) rotateX(-50deg);
-    }
-    to {
-      top: 50%;
-
-      opacity: 1;
-      transform: translate(-50%, -50%) rotateX(0);
-    }
-  }
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-  }
 }
 
 .main {

@@ -1,6 +1,8 @@
 <template>
   <div class="comic__content">
-    <img :src="src" alt="" />
+    <transition name="fade">
+      <img :src="src" alt="" />
+    </transition>
   </div>
 </template>
 
@@ -8,6 +10,7 @@
 <script>
 export default {
   name: "TheComicContent",
+
   props: {
     src: { type: String, default: "" },
   },

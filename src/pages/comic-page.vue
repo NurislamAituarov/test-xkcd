@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <div class="header__title">
-      <h1>TEST FROM I-ONE WEB AGENCY</h1>
+      <h1 class="anim-title">TEST FROM I-ONE WEB AGENCY</h1>
       <img src="@/public/fon.png" alt="фоновое изображение" />
     </div>
 
@@ -64,7 +64,6 @@ export default {
 
     getComicPrev({ id, start }) {
       const idGenerate = start ? 1 : id - 1;
-
       this.getComicId(idGenerate)
         .then((data) => (this.comic = data))
         .catch((e) => console.error(e));
@@ -81,6 +80,7 @@ export default {
 
 .header__title {
   position: relative;
+  perspective: 500px;
   h1 {
     position: absolute;
     top: 50%;
@@ -91,6 +91,27 @@ export default {
     letter-spacing: 0.1em;
     color: #ffffff;
   }
+
+  .anim-title {
+    animation-duration: 1s;
+    animation-name: anim-title;
+    animation-direction: alternate;
+  }
+
+  @keyframes anim-title {
+    from {
+      top: 65%;
+      opacity: 0;
+      transform: translate(-50%, -50%) rotateX(-50deg);
+    }
+    to {
+      top: 50%;
+
+      opacity: 1;
+      transform: translate(-50%, -50%) rotateX(0);
+    }
+  }
+
   img {
     width: 100%;
     height: 100%;

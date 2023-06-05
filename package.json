@@ -9,7 +9,7 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d output"
+    "deploy": "gh-pages -d dist"
   },
   "devDependencies": {
     "@types/node": "^18",

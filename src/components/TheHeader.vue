@@ -43,7 +43,7 @@ export default {
   }
 
   .anim-title {
-    animation-duration: 1.5s;
+    animation-duration: 1s;
     animation-name: anim-title;
     animation-direction: alternate;
   }

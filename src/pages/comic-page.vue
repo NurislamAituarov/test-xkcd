@@ -33,6 +33,7 @@ import { getRandomComicId, getComicId } from "../lib/methods";
 export default {
   name: "ComicPage",
   components: { TheComicNav, TheComicContent, TheHeader },
+
   data() {
     return {
       comic: [],
@@ -50,7 +51,7 @@ export default {
     getRandomComic() {
       this.getRandomComicId()
         .then((data) => (this.comic = data))
-        .catch((e) => console.log(e));
+        .catch((e) => console.error(e));
     },
 
     getComicNext({ id, end }) {
